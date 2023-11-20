@@ -1,17 +1,14 @@
 
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form} from 'formik'
 import { Container,Input, Button, Error } from './SearchStyle.module';
 
 function validateText(value) {
    let error;
    if (!value) {
      error = 'Required';
-   } else if (!/^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(value)) {
+   } else if (!/^[a-zA-Za-яА-Я]+(([' -][a-zA-Za-яА-Я ])?[a-zA-Za-яА-Я]*)*$/i.test(value)) {
      error = 'Invalid word';
-     
-    // alert('sgdsdgvkdsvksdvhksjd')
-    // value.resetForm();
-     
+  
    }
    return error;
  }
@@ -28,12 +25,12 @@ const Searchbar = ({ onSubmit, isSubmitting }) => {
     <Formik initialValues={{ values: '' }} onSubmit={handleSubmit}>
 				 {({ errors, touched }) => (
 					<Form >
-						<Container className='mb-3'>
+						<Container >
             <Input name='values' type='text' validate={validateText} />
             {errors.values && touched.values ? (
              <Error>{errors.values}</Error> 
            ) : null}
-						<Button type='submit'className='btn btn-primary mb-5' disabled={isSubmitting}>
+						<Button type='submit' disabled={isSubmitting}>
 							Search
 						</Button>
               </Container>

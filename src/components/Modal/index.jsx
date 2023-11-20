@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
-import CSS from '../styles.module.css';
+import {Owerlay, ModalBox} from './ModalStyle.module';
 
 const modalRoot = document.querySelector('#modal-root')
 export default class Modal extends Component{
@@ -19,16 +19,15 @@ export default class Modal extends Component{
     hendleBackDrop = event => {
                 if (event.currentTarget === event.target) {
                     this.props.onCloseModal('Escape');
-                   // console.log(event);
         }
     }
     
 render(){
     return createPortal(
-        <div onClick={this.hendleBackDrop} className={CSS.Overlay}>
-            <div className={CSS.Modal}>
+        <Owerlay onClick={this.hendleBackDrop} >
+            <ModalBox >
                 {this.props.children}
-  </div>
-</div>, modalRoot)
+  </ModalBox>
+</Owerlay>, modalRoot)
 }
     }
